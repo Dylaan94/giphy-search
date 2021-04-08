@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <input type = 'button' value = 'new cat photo' id = 'button'>
+
+    <input type = 'text' id = 'searchValue' placeholder = "search for gif" name = "search">
+    <button type = "submit" id = "submitBtn"> search </button>
+
+</head>
+
+<body>
+    <img src="#" />
+    <script>
+    const img = document.querySelector('img');
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=YOUR_API_KEY=cats', { mode: 'cors' })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            console.log(response)
+            console.log(response.data.images.original.url);
+            img.src = response.data.images.original.url;
+        });
+
+        document.getElementById('button').addEventListener('click', () => {
+            img.src = "#"
+                fetch('https://api.giphy.com/v1/gifs/translate?api_key=YOUR_API_KEYs=cats', { mode: 'cors' })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    console.log(response)
+                    console.log(response.data.images.original.url);
+                    img.src = response.data.images.original.url;
+                });
+        })
+
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            let searchValue = document.getElementById('searchValue').value.trim().replace(/ /g, "+")
+            console.log(searchValue)
+
+            let fetchApi = 'https://api.giphy.com/v1/gifs/translate?api_key=YOUR_API_KEY=' + searchValue
+            console.log(fetchApi)
+            fetch(fetchApi, { mode: 'cors' })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    console.log(response)
+                    console.log(response.data.images.original.url);
+                    img.src = response.data.images.original.url;
+                });
+        })
+
+    </script>
+</body>
+
+</html>
+
