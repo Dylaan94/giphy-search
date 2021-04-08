@@ -52,7 +52,9 @@
                     console.log(response)
                     console.log(response.data.images.original.url);
                     img.src = response.data.images.original.url;
-                });
+                }).catch(function (err) {
+                    alert('no image found, try again')
+                })
         })
 
     </script>
